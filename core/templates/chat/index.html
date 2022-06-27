@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+{{block.super}}
+
+<body style="background-color:lightseagreen;">
+    <div class="container">
+        <div class="m-3 p-2">
+        <h3 >Enter name of chat room you would like to enter</h3>
+        <input id="room-name-input" class="col-sm-5 m-2" type="text"><br>
+        <input id="room-name-submit" class="btn btn-primary" type="button" value="Enter">
+    </div>
+    </div>
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function (param) {
+            if (param.keycode === 13) {
+                document.querySelector('#room-name-submit').onclick();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function (param) {
+            let roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/Senami/' + roomName + '/';
+            if (roomName === ''){
+                window.location.pathname = '/Senami/';            
+            }
+
+        };
+    </script>
+</body>
+
+{% endblock %}
