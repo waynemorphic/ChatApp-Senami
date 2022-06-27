@@ -1,9 +1,10 @@
-import imp
+
+from multiprocessing import AuthenticationError
 from multiprocessing.context import ForkContext
 from django.shortcuts import redirect, render
 from django.views import generic
 from django.urls  import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, AuthenticationForm
 from django.contrib.auth import logout
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
@@ -14,7 +15,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # user registration
@@ -27,11 +28,17 @@ class signUp(generic.CreateView):
     success_url = reverse_lazy("login")    
     template_name =  'registration/register.html'
 
-
+# user login
+# class signIn(generic.CreateView):
+#     form_class = AuthenticationForm
+    
+#     success_url = reverse_lazy('index')
+#     template_name = "registration/login.html"
+    
 # user logout
-def logOut(request):
-    logout(request)
-    return redirect(to = 'login')
+# def logOut(request):
+#     logout(request)
+#     return redirect(to = 'signUp')
 
 # resetting passwords
 def password_reset_request(request):
@@ -71,8 +78,10 @@ def password_reset_request(request):
     context = {"password_reset_form": password_reset_form}
     return render(request, 'registration/password_reset.html', context)
 
+@login_required
 def index(request):
     return render(request, 'chat/index.html')
 
+@login_required
 def room(request, room_name):
     return render(request, 'chat/room.html', {"room_name": room_name})

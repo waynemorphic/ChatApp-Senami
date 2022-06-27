@@ -18,15 +18,21 @@ from django.urls import path, include
 # from django_registration.views import RegistrationView
 from django.contrib.auth import views as auth_views
 from core import views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('Senami/', include('core.urls')),      
+    path('Senami/', views.index, name = 'index'),
+    path('Senami/', include('core.urls')),  
+    path('admin/', admin.site.urls),        
     path('password_reset', views.password_reset_request, name = 'password_reset'), 
     path('accounts/register/', views.signUp.as_view(), name = 'user_registration'),  
-    # path('accounts/', include('django.contrib.auth.urls')),
-    path('login', auth_views.LoginView.as_view(next_page = 'index'), name = 'login'),
+    # path('accounts/', include('django.contrib.auth.urls')),,
+    path('password_reset', views.password_reset_request, name = 'password_reset'),
+    path('<str:room_name>/', views.room, name = 'room'),
+    path('logout', LogoutView.as_view(next_page = 'login'), name = 'logout'),  
+    path('', auth_views.LoginView.as_view(next_page = 'index'), name = 'login'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name = 'registration/password_reset_done.html'), name = 'password_reset_done'),
     path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name = 'registration/password_reset_confirm.html'), name = 'password_reset_confirm'),
     path('reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name = 'registration/password_reset_complete.html'), name = 'password_reset_complete'),
 ]
+
