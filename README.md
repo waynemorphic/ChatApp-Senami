@@ -32,13 +32,13 @@ No reported bugs so far. However, if you notice any bugs, contact me through my 
 6. django-registration
 
 # Senami Version 1 Developers
-url(https://github.com/waynemorphic)
-url(https://github.com/Jeff-Owuor)
-url(https://github.com/Ngina-G)
-url(https://github.com/Moni-que)
+1. https://github.com/waynemorphic
+2. https://github.com/Jeff-Owuor
+3. https://github.com/Ngina-G
+4. https://github.com/Moni-que
 
 # Senami Version 1 Link
-url(senamiapp.herokuapp.com/)
+https://senamiapp.herokuapp.com/
 
 # Senami Version 2
 I am still figuring out how to deploy a django ASGI application. Therefore, the application has not been staged for production yet.
