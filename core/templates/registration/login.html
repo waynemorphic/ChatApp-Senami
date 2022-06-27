@@ -15,7 +15,8 @@
         {% csrf_token %}
         {% bootstrap_form form %}
         <button type="submit" class="btn btn-primary btn-sm">Sign In</button><br>
-        <small class="text-center">Don't have an account, <a href="{% url 'user_registration' %}" style="text-decoration: none; font-size: 1rem; ">Sign Up</a></small>
+        <small class="text-center">Don't have an account, <a href="{% url 'user_registration' %}" style="text-decoration: none; font-size: 1rem; ">Sign Up</a></small><br>
+        <small class="text-center">Forgot password, <a href="{% url 'password_reset' %}" style="text-decoration: none; font-size: 1rem; ">Click Me</a></small>
     </form>
     
  

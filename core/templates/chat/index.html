@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load bootstrap5 %}
-
+{% load static %}
 {% block content %}
 {{block.super}}
+{% include 'navbar.html' %}
 
 <body style="background-color:lightseagreen;">
     <div class="container">
@@ -12,23 +13,7 @@
         <input id="room-name-submit" class="btn btn-primary" type="button" value="Enter">
     </div>
     </div>
-    <script>
-        document.querySelector('#room-name-input').focus();
-        document.querySelector('#room-name-input').onkeyup = function (param) {
-            if (param.keycode === 13) {
-                document.querySelector('#room-name-submit').onclick();
-            }
-        };
-
-        document.querySelector('#room-name-submit').onclick = function (param) {
-            let roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/Senami/' + roomName + '/';
-            if (roomName === ''){
-                window.location.pathname = '/Senami/';            
-            }
-
-        };
-    </script>
+    <script src="{% static 'js/index.js' %}"></script>
 </body>
 
 {% endblock %}
